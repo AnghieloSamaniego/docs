@@ -39,31 +39,6 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "development"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API WhatsApp",
-      "pages": [
-        "api-whatsapp/endpoint/dni"
-      ]
-    },
-    {
       "group": "API Consulta",
       "pages": [
         "api-consulta/endpoint/dni",
@@ -73,7 +48,18 @@
         "api-consulta/endpoint/placa",
         "api-consulta/endpoint/licencia-conducir",
         "api-consulta/endpoint/cee",
-        "api-consulta/endpoint/tipocambio"
+        "api-consulta/endpoint/tipocambio",
+        "api-consulta/endpoint/sunat-cpe",
+        "api-consulta/endpoint/sunat-factura",
+        "api-consulta/endpoint/sunat-boleta",
+        "api-consulta/endpoint/sunat-guia",
+        "api-consulta/endpoint/sunat-guia-xml"
+      ]
+    },
+    {
+      "group": "API WhatsApp",
+      "pages": [
+        "api-whatsapp/endpoint/dni"
       ]
     }
   ],
