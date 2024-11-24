@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://api.factiliza.com/v1"
+      "url": "https://apiwsp.factiliza.com/v1"
     }
   ],
   "security": [
@@ -19,57 +19,28 @@
     }
   ],
   "paths": {
-    "/dni/info/{dni}": {
-      "get": {
-        "tags": ["dni"],
-        "description": "Returna datos segun el dni",
+    "/message/sendtext/{nombre-instancia}": {
+      "post": {
+        "description": "Enviar mensaje tipo Texto",
+        "tags": ["Message"],
         "parameters": [
           {
-            "name": "dni",
+            "name": "nombre-instancia",
             "in": "path",
             "required": true,
             "style": "simple",
-            "description": "El dni a consultar",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
+        
         "requestBody": {
           "description": "Plant to add to the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/send-text"
               }
             }
           },
@@ -77,11 +48,11 @@
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "message response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "$ref": "#/components/schemas/ok"
                 }
               }
             }
@@ -91,7 +62,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/error"
                 }
               }
             }
@@ -99,57 +70,28 @@
         }
       }
     },
-    "/ruc/info/{ruc}": {
-      "get": {
-        "tags": ["ruc"],
-        "description": "Returna los datos del RUC",
+    "/message/sendmedia/{nombre-instancia}": {
+      "post": {
+        "description": "Enviar mensaje tipo Media ('imagen', 'documento', 'vídeo' o 'audio') \n Enviar archivos de una url o locales de su computadora (base64)",
+        "tags": ["Message"],
         "parameters": [
           {
-            "name": "ruc",
+            "name": "nombre-instancia",
             "in": "path",
             "required": true,
             "style": "simple",
-            "description": "El RUC a consultar",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
+        
         "requestBody": {
           "description": "Plant to add to the store",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/send-media"
               }
             }
           },
@@ -157,11 +99,11 @@
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "message response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "$ref": "#/components/schemas/ok"
                 }
               }
             }
@@ -171,40 +113,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/error"
                 }
               }
             }
@@ -215,126 +124,104 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
-       "type": "object",
-      "properties": {
-        "status": {
-          "type": "integer",
-          "description": "El código de estado de la respuesta"
-        },
-        "message": {
-          "type": "string",
-          "description": "Mensaje de la respuesta"
-        },
-        "data": {
-          "type": "object",
-          "description": "Datos detallados de la respuesta",
-          "properties": {
-            "numero": {
-              "type": "string",
-              "description": "Número de identificación (DNI)"
-            },
-            "nombres": {
-              "type": "string",
-              "description": "Nombres de la persona"
-            },
-            "apellido_paterno": {
-              "type": "string",
-              "description": "Apellido paterno de la persona"
-            },
-            "apellido_materno": {
-              "type": "string",
-              "description": "Apellido materno de la persona"
-            },
-            "nombre_completo": {
-              "type": "string",
-              "description": "Nombre completo de la persona"
-            },
-            "departamento": {
-              "type": "string",
-              "description": "Departamento de residencia"
-            },
-            "provincia": {
-              "type": "string",
-              "description": "Provincia de residencia"
-            },
-            "distrito": {
-              "type": "string",
-              "description": "Distrito de residencia"
-            },
-            "direccion": {
-              "type": "string",
-              "description": "Dirección específica"
-            },
-            "direccion_completa": {
-              "type": "string",
-              "description": "Dirección completa, incluyendo distrito, provincia y departamento"
-            },
-            "ubigeo_reniec": {
-              "type": "string",
-              "description": "Ubigeo según RENIEC"
-            },
-            "ubigeo_sunat": {
-              "type": "string",
-              "description": "Ubigeo según SUNAT"
-            },
-            "ubigeo": {
-              "type": "array",
-              "description": "Ubigeo desglosado por componentes",
-              "items": {
-                "type": "string"
-              }
-            },
-            "fecha_nacimiento": {
-              "type": "string",
-              "format": "date",
-              "nullable": true,
-              "description": "Fecha de nacimiento de la persona"
-            },
-            "sexo": {
-              "type": "string",
-              "nullable": true,
-              "description": "Sexo de la persona"
-            }
-          }
-        }
-      }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
+      "send-text": {
         "required": [
-          "error",
-          "message"
+          "number",
+          "text"
         ],
         "type": "object",
         "properties": {
-          "error": {
+          "number": {
+            "type": "string",
+            "description": "Número del whatsapp para enviar el mensaje. Codigo de pais + número \n Ejm: 51999999999"
+          },
+          "text": {
+            "type": "string",
+            "description": "El mensaje de texto, soporta emojis, saltos de linea, negrita, etc."
+          }
+        },
+        "additionalProperties": false
+      },
+      "send-media": {
+        "required": [
+          "number",
+          "media",
+          "mediatype"
+        ],
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "Número del whatsapp para enviar el mensaje. Codigo de pais + número \n Ejm: 51999999999"
+          },
+          "mediatype": {
+            "type": "string",
+            "description": "Puede ser 'image', 'document', 'video', o 'audio'."
+          },
+          "filename": {
+            "type": "string",
+            "description": "Nombre del archivo con su extension. ejem: invoice.pdf (solo para media en base64)\nEn media url el filename es opcional"
+          },
+          "media": {
+            "type": "string",
+            "description": "Url  o Base64 de archivo(si es archivo local)"
+          },
+          "caption": {
+            "type": "string",
+            "description": "Es el texto para acompañar el documento enviado."
+          }
+        },
+        "additionalProperties": false
+      },
+      "error": {
+        "required": [
+          "status",
+          "message",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
             "type": "integer",
             "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
           },
           "message": {
             "type": "string"
           }
-        }
+        },
+        "example": {
+        "status": 400,
+        "success": false,
+        "message": "The \"MA==\" instance does not exist or is not connected"
+      }
+      },
+      "ok": {
+        "required": [
+          "status",
+          "message",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+        "status": 200,
+        "success": true,
+        "message": "Mensaje enviado con Exito!"
+      }
       }
     },
     "securitySchemes": {

@@ -59,13 +59,16 @@
     {
       "group": "API WhatsApp",
       "pages": [
-        "api-whatsapp/endpoint/dni"
+        "api-whatsapp/endpoint/send-text",
+        "api-whatsapp/endpoint/send-media",
+         "api-whatsapp/recomendacion"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+   
+    "website": "https://factiliza.com",
+    "facebook": "https://www.facebook.com/factiliza",
+    "youtube": "https://www.youtube.com/@factiliza"
   }
 }

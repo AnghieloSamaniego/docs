@@ -383,6 +383,7 @@
     },
     "/sunat/factura/{numRuc}-{numSerieComprobante}-{numDocumentoComprobante}": {
       "get": {
+        "description": "Visualiza los datos de cualquier factura enviada a SUNAT, sin importar quien la emitió",
         "tags": ["sunat"],
         "parameters": [
           {
@@ -439,6 +440,7 @@
     },
     "/sunat/boleta/{numRuc}-{numSerieComprobante}-{numDocumentoComprobante}": {
       "get": {
+        "description": "Visualiza los datos de cualquier boleta enviada a SUNAT, sin importar quien la emitió",
         "tags": ["sunat"],
         "parameters": [
           {
@@ -495,6 +497,7 @@
     },
     "/sunat/guia/{numRuc}-{numSerieComprobante}-{numDocumentoComprobante}": {
       "get": {
+        "description": "Visualiza los datos de cualquier guia enviada a SUNAT, sin importar quien la emitió",
         "tags": ["sunat"],
         "parameters": [
           {
@@ -551,6 +554,7 @@
     },
     "/sunat/guia/xml/{numRuc}-{numSerieComprobante}-{numDocumentoComprobante}": {
       "get": {
+        "description": "Descarga el xml de cualquier guía enviada a SUNAT, sin importar quien la emitió",
         "tags": ["sunat"],
         "parameters": [
           {
