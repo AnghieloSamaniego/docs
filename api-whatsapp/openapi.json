@@ -1,0 +1,347 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI Plant Store",
+    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "license": {
+      "name": "MIT"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.factiliza.com/v1"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/dni/info/{dni}": {
+      "get": {
+        "tags": ["dni"],
+        "description": "Returna datos segun el dni",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "El dni a consultar",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Plant"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new plant in the store",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ruc/info/{ruc}": {
+      "get": {
+        "tags": ["ruc"],
+        "description": "Returna los datos del RUC",
+        "parameters": [
+          {
+            "name": "ruc",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "El RUC a consultar",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Plant"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new plant in the store",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plants/{id}": {
+      "delete": {
+        "description": "Deletes a single plant based on the ID supplied",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of plant to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Plant deleted",
+            "content": {}
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Plant": {
+       "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "El código de estado de la respuesta"
+        },
+        "message": {
+          "type": "string",
+          "description": "Mensaje de la respuesta"
+        },
+        "data": {
+          "type": "object",
+          "description": "Datos detallados de la respuesta",
+          "properties": {
+            "numero": {
+              "type": "string",
+              "description": "Número de identificación (DNI)"
+            },
+            "nombres": {
+              "type": "string",
+              "description": "Nombres de la persona"
+            },
+            "apellido_paterno": {
+              "type": "string",
+              "description": "Apellido paterno de la persona"
+            },
+            "apellido_materno": {
+              "type": "string",
+              "description": "Apellido materno de la persona"
+            },
+            "nombre_completo": {
+              "type": "string",
+              "description": "Nombre completo de la persona"
+            },
+            "departamento": {
+              "type": "string",
+              "description": "Departamento de residencia"
+            },
+            "provincia": {
+              "type": "string",
+              "description": "Provincia de residencia"
+            },
+            "distrito": {
+              "type": "string",
+              "description": "Distrito de residencia"
+            },
+            "direccion": {
+              "type": "string",
+              "description": "Dirección específica"
+            },
+            "direccion_completa": {
+              "type": "string",
+              "description": "Dirección completa, incluyendo distrito, provincia y departamento"
+            },
+            "ubigeo_reniec": {
+              "type": "string",
+              "description": "Ubigeo según RENIEC"
+            },
+            "ubigeo_sunat": {
+              "type": "string",
+              "description": "Ubigeo según SUNAT"
+            },
+            "ubigeo": {
+              "type": "array",
+              "description": "Ubigeo desglosado por componentes",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fecha_nacimiento": {
+              "type": "string",
+              "format": "date",
+              "nullable": true,
+              "description": "Fecha de nacimiento de la persona"
+            },
+            "sexo": {
+              "type": "string",
+              "nullable": true,
+              "description": "Sexo de la persona"
+            }
+          }
+        }
+      }
+      },
+      "NewPlant": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Plant"
+          },
+          {
+            "required": [
+              "id"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Identification number of the plant",
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
+        ]
+      },
+      "Error": {
+        "required": [
+          "error",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

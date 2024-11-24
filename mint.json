@@ -1,52 +1,41 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Documentación",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#7367f0",
+    "light": "#A49AFB",
+    "dark": "#7367f0",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#7367f0",
+      "to": "#A49AFB"
     }
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "Soporte",
+      "url": "https://wa.me/51949035687"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.factiliza.com"
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "API Consulta",
+      "url": "api-consulta"
+    },
+    {
+      "name": "API WhatsApp",
+      "url": "api-whatsapp"
     }
   ],
   "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
   ],
   "navigation": [
     {
@@ -69,17 +58,22 @@
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "API WhatsApp",
       "pages": [
-        "api-reference/introduction"
+        "api-whatsapp/endpoint/dni"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "API Consulta",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-consulta/endpoint/dni",
+        "api-consulta/endpoint/ruc",
+        "api-consulta/endpoint/ruc-anexo",
+        "api-consulta/endpoint/ruc-representante",
+        "api-consulta/endpoint/placa",
+        "api-consulta/endpoint/licencia-conducir",
+        "api-consulta/endpoint/cee",
+        "api-consulta/endpoint/tipocambio"
       ]
     }
   ],

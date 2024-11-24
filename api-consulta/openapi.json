@@ -1,0 +1,990 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI Plant Store",
+    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "license": {
+      "name": "MIT"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.factiliza.com/v1"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/dni/info/{dni}": {
+      "get": {
+        "tags": ["dni"],
+        "description": "Retorna datos segun el DNI",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "El dni a consultar",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "dni response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dni"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ruc/info/{ruc}": {
+      "get": {
+        "tags": ["ruc"],
+        "description": "Retorna datos segun el RUC",
+        "parameters": [
+          {
+            "name": "ruc",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "El RUC a consultar",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ruc response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ruc"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ruc/anexo/{ruc}": {
+      "get": {
+        "tags": ["ruc"],
+        "description": "Retorna anexos segun el RUC",
+        "parameters": [
+          {
+            "name": "ruc",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "El RUC a consultar",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ruc response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ruc-anexo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ruc/representante/{ruc}": {
+      "get": {
+        "tags": ["ruc"],
+        "description": "Retorna representantes segun el RUC",
+        "parameters": [
+          {
+            "name": "ruc",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "El RUC a consultar",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ruc response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ruc-representate"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/placa/info/{placa}": {
+      "get": {
+        "tags": ["placa"],
+        "description": "Retorna datos segun la placa",
+        "parameters": [
+          {
+            "name": "placa",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "La placa a consultar",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "placa response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/placa"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/licencia/info/{dni}": {
+      "get": {
+        "tags": ["dni"],
+        "description": "Retorna la licencia de conducir segun el dni",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "El dni a consultar",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "licencia response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/licencia-conducir"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cee/info/{cee}": {
+      "get": {
+        "tags": ["cee"],
+        "description": "Retorna datos segun la CEE",
+        "parameters": [
+          {
+            "name": "cee",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "description": "El carnet de extranjeria a consultar",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "cee response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cee"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipocambio/info/dia": {
+      "get": {
+        "tags": ["fecha"],
+        "description": "Retorna el tipo de cambio segun la fecha",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "description": "La fecha a consultar. Ejm 2024-01-01",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "cee response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tipocambio"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "dni": {
+       "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "El código de estado de la respuesta"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "El estado de la respuesta  true o false"
+        },
+        "message": {
+          "type": "string",
+          "description": "Mensaje de la respuesta"
+        },
+        "data": {
+          "type": "object",
+          "description": "Datos detallados de la respuesta",
+          "properties": {
+            "numero": {
+              "type": "string",
+              "description": "Número de identificación (DNI)"
+            },
+            "nombres": {
+              "type": "string",
+              "description": "Nombres de la persona"
+            },
+            "apellido_paterno": {
+              "type": "string",
+              "description": "Apellido paterno de la persona"
+            },
+            "apellido_materno": {
+              "type": "string",
+              "description": "Apellido materno de la persona"
+            },
+            "nombre_completo": {
+              "type": "string",
+              "description": "Nombre completo de la persona"
+            },
+            "departamento": {
+              "type": "string",
+              "description": "Departamento de residencia"
+            },
+            "provincia": {
+              "type": "string",
+              "description": "Provincia de residencia"
+            },
+            "distrito": {
+              "type": "string",
+              "description": "Distrito de residencia"
+            },
+            "direccion": {
+              "type": "string",
+              "description": "Dirección específica"
+            },
+            "direccion_completa": {
+              "type": "string",
+              "description": "Dirección completa, incluyendo distrito, provincia y departamento"
+            },
+            "ubigeo_reniec": {
+              "type": "string",
+              "description": "Ubigeo según RENIEC"
+            },
+            "ubigeo_sunat": {
+              "type": "string",
+              "description": "Ubigeo según SUNAT"
+            },
+            "ubigeo": {
+              "type": "array",
+              "description": "Ubigeo desglosado por componentes",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fecha_nacimiento": {
+              "type": "string",
+              "format": "date",
+              "nullable": true,
+              "description": "Fecha de nacimiento de la persona"
+            },
+            "sexo": {
+              "type": "string",
+              "nullable": true,
+              "description": "Sexo de la persona"
+            }
+          }
+        }
+      },
+      "example": {
+        "status": 200,
+        "success": true,
+        "message": "Exito",
+        "data": {
+          "numero": "27427864",
+          "nombres": "JOSE PEDRO",
+          "apellido_paterno": "CASTILLO",
+          "apellido_materno": "TERRONES",
+          "nombre_completo": "CASTILLO TERRONES, JOSE PEDRO",
+          "departamento": "CAJAMARCA",
+          "provincia": "CHOTA",
+          "distrito": "TACABAMBA",
+          "direccion": "CASERIO PUÑA",
+          "direccion_completa": "CASERIO PUÑA, CAJAMARCA - CHOTA - TACABAMBA",
+          "ubigeo_reniec": "060615",
+          "ubigeo_sunat": "060417",
+          "ubigeo": [
+            "06",
+            "0604",
+            "060417"
+          ],
+          "fecha_nacimiento": "",
+          "sexo": ""
+        }
+      }
+      },
+      "ruc": {
+       "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "El código de estado de la respuesta"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "El estado de la respuesta  true o false"
+        },
+        "message": {
+          "type": "string",
+          "description": "Mensaje de la respuesta"
+        },
+        "data": {
+          "type": "object",
+          "description": "Datos detallados de la respuesta",
+          "properties": {
+            "numero": {
+              "type": "string",
+              "description": "Número de identificación (RUC)"
+            },
+            "nombre_o_razon_social": {
+              "type": "string",
+              "description": "Nombre o Razon Social de la empresa"
+            },
+            "tipo_contribuyente": {
+              "type": "string",
+              "description": "Tipo de contribuyente de la empresa"
+            },
+            "estado": {
+              "type": "string",
+              "description": "Estado de la empresa"
+            },
+            "condicion": {
+              "type": "string",
+              "description": "Condición de la empresa"
+            },
+            "departamento": {
+              "type": "string",
+              "description": "Departamento de la empresa"
+            },
+            "provincia": {
+              "type": "string",
+              "description": "Provincia de la empresa"
+            },
+            "distrito": {
+              "type": "string",
+              "description": "Distrito de la empresa"
+            },
+            "direccion": {
+              "type": "string",
+              "description": "Dirección específica"
+            },
+            "direccion_completa": {
+              "type": "string",
+              "description": "Dirección completa, incluyendo distrito, provincia y departamento"
+            },
+            "ubigeo_sunat": {
+              "type": "string",
+              "description": "Ubigeo según SUNAT"
+            },
+            "ubigeo": {
+              "type": "array",
+              "description": "Ubigeo desglosado por componentes",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "example": {
+        "status": 200,
+        "success": true,
+        "message": "Exito",
+        "data": {
+            "numero": "20552103816",
+            "nombre_o_razon_social": "AGROLIGHT PERU S.A.C.",
+            "tipo_contribuyente": "SOCIEDAD ANONIMA CERRADA",
+            "estado": "SUSPENSION TEMPORAL",
+            "condicion": "HABIDO",
+            "departamento": "LIMA",
+            "provincia": "LIMA",
+            "distrito": "SANTA ANITA",
+            "direccion": "PJ. JORGE BASADRE NRO. 158 URB. POP LA UNIVERSAL 2DA ET.",
+            "direccion_completa": "PJ. JORGE BASADRE NRO. 158 URB. POP LA UNIVERSAL 2DA ET., LIMA - LIMA - SANTA ANITA",
+            "ubigeo_sunat": "150137",
+            "ubigeo": [
+                "15",
+                "1501",
+                "150137"
+            ]
+          }
+      }
+      },
+      "ruc-anexo": {
+       "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "El código de estado de la respuesta"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "El estado de la respuesta  true o false"
+        },
+        "message": {
+          "type": "string",
+          "description": "Mensaje de la respuesta"
+        },
+        "data": {
+          "type": "array",
+          "description": "Datos detallados de la respuesta",
+          "items": {
+            "type": "object",
+          "properties": {
+            "codigo": {
+              "type": "string",
+              "description": "Codigo del local"
+            },
+            "tipo_establecimiento": {
+              "type": "string",
+              "description": "Tipo de establecimiento del local"
+            },
+            "actividad_economica": {
+              "type": "string",
+              "description": "Actividad economica del local"
+            },
+            "departamento": {
+              "type": "string",
+              "description": "Departamento del local"
+            },
+            "provincia": {
+              "type": "string",
+              "description": "Provincia del local"
+            },
+            "distrito": {
+              "type": "string",
+              "description": "Distrito del local"
+            },
+            "direccion": {
+              "type": "string",
+              "description": "Dirección específica"
+            },
+            "direccion_completa": {
+              "type": "string",
+              "description": "Dirección completa, incluyendo distrito, provincia y departamento"
+            },
+            "ubigeo_sunat": {
+              "type": "string",
+              "description": "Ubigeo según SUNAT"
+            },
+            "ubigeo": {
+              "type": "array",
+              "description": "Ubigeo desglosado por componentes",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+          }
+        }
+      },
+      "example": {
+        "status": 200,
+        "message": "Exito",
+        "data": [
+            {
+                "codigo": "0003",
+                "tipo_establecimiento": "DE. DEPOSITO",
+                "actividad_economica": "-",
+                "direccion": "MZA. E6 LOTE. 13 URB. PIT PARQUE INDUSTRIAL (MZ. E",
+                "direccion_completa": "MZA. E6 LOTE. 13 URB. PIT PARQUE INDUSTRIAL (MZ. E, LA LIBERTAD - TRUJILLO - LA ESPERANZA",
+                "departamento": "LA LIBERTAD",
+                "provincia": "TRUJILLO",
+                "distrito": "LA ESPERANZA",
+                "ubigeo_sunat": "130105",
+                "ubigeo": [
+                    "13",
+                    "1301",
+                    "130105"
+                ]
+            },
+            {
+                "codigo": "0002",
+                "tipo_establecimiento": "SU. SUCURSAL",
+                "actividad_economica": "-",
+                "direccion": "AV. EL EJERCITO NRO. 1020 INT. A BARR. EL MOLINO",
+                "direccion_completa": "AV. EL EJERCITO NRO. 1020 INT. A BARR. EL MOLINO, LA LIBERTAD - TRUJILLO - TRUJILLO",
+                "departamento": "LA LIBERTAD",
+                "provincia": "TRUJILLO",
+                "distrito": "TRUJILLO",
+                "ubigeo_sunat": "130101",
+                "ubigeo": [
+                    "13",
+                    "1301",
+                    "130101"
+                ]
+            }
+        ]
+      }
+      },
+      "ruc-representate": {
+        "type": "object",
+       "properties": {
+         "status": {
+           "type": "integer",
+           "description": "El código de estado de la respuesta"
+         },
+         "success": {
+           "type": "boolean",
+           "description": "El estado de la respuesta  true o false"
+         },
+         "message": {
+           "type": "string",
+           "description": "Mensaje de la respuesta"
+         },
+         "data": {
+           "type": "array",
+           "description": "Datos detallados de la respuesta",
+           "items": {
+             "type": "object",
+           "properties": {
+             "tipo_de_documento": {
+               "type": "string",
+               "description": "Tipo de documento del representate"
+             },
+             "numero_de_documento": {
+               "type": "string",
+               "description": "Numero de documento del representante"
+             },
+             "nombre": {
+               "type": "string",
+               "description": "Nombre del representante"
+             },
+             "cargo": {
+               "type": "string",
+               "description": "Cargo del representate"
+             },
+             "fecha_desde": {
+               "type": "string",
+               "description": "Fecha desde"
+             }
+           }
+           }
+         }
+       },
+       "example": {
+        "status": 200,
+        "message": "Exito",
+        "data": [
+            {
+                "tipo_de_documento": "DNI",
+                "numero_de_documento": "1*****72",
+                "nombre": "PAIMO *****O ***NA",
+                "cargo": "GERENTE GENERAL",
+                "fecha_desde": "30/09/2002"
+            }
+        ]
+       }
+       },
+       "placa": {
+       "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": "El código de estado de la respuesta"
+        },
+        "success": {
+          "type": "boolean",
+          "description": "El estado de la respuesta  true o false"
+        },
+        "message": {
+          "type": "string",
+          "description": "Mensaje de la respuesta"
+        },
+        "data": {
+          "type": "object",
+          "description": "Datos detallados de la respuesta",
+          "properties": {
+            "placa": {
+              "type": "string",
+              "description": "Placa del vehiculo"
+            },
+            "marca": {
+              "type": "string",
+              "description": "Marca del vehiculo"
+            },
+            "modelo": {
+              "type": "string",
+              "description": "Modelo del vehiculo"
+            },
+            "serie": {
+              "type": "string",
+              "description": "Serie del vehiculo"
+            },
+            "color": {
+              "type": "string",
+              "description": "Color del vehiculo"
+            },
+            "motor": {
+              "type": "string",
+              "description": "Motor del vehiculo"
+            },
+            "vin": {
+              "type": "string",
+              "description": "VIN del vehiculo"
+            }
+          }
+        }
+      },
+      "example": {
+        "status": 200,
+        "message": "Exito",
+        "data": {
+            "placa": "F3H792",
+            "marca": "FIAT",
+            "modelo": "FIORINO",
+            "serie": "9BD25521A98854312",
+            "color": "BLANCO BANCHISA",
+            "motor": "8632404",
+            "vin": "9BD25521A98854312"
+        }
+      }
+       },
+      "licencia-conducir": {
+        "type": "object",
+       "properties": {
+         "status": {
+           "type": "integer",
+           "description": "El código de estado de la respuesta"
+         },
+         "success": {
+           "type": "boolean",
+           "description": "El estado de la respuesta  true o false"
+         },
+         "message": {
+           "type": "string",
+           "description": "Mensaje de la respuesta"
+         },
+         "data": {
+           "type": "object",
+           "description": "Datos detallados de la respuesta",
+           "properties": {
+             "numero_documento": {
+               "type": "string",
+               "description": "Numero de documento"
+             },
+             "nombres": {
+               "type": "string",
+               "description": "Nombres"
+             },
+             "apellido_paterno": {
+               "type": "string",
+               "description": "Apellido paterno"
+             },
+             "apellido_materno": {
+               "type": "string",
+               "description": "Apellido materno"
+             },
+             "grupo_sanguineo": {
+               "type": "string",
+               "description": "Grupo sanguineo"
+             },
+             "donacion_organos": {
+               "type": "string",
+               "description": "Donación de organos"
+             },
+             "licencia": {
+               "type": "array",
+               "description": "Licencias de su dni"
+             }
+           }
+         }
+       },
+       "example": {
+         "status": 200,
+         "message": "Exito",
+         "data": {
+        "numero_documento": "10400310",
+        "nombres": "CARLOS EDGARDO",
+        "apellido_paterno": "DELGADO",
+        "apellido_materno": "RIVERA",
+        "grupo_sanguineo": "O+",
+        "donacion_organos": "NO",
+        "licencia": [
+            {
+                "numero": "Q10400310",
+                "categoria": "A I",
+                "fecha_expedicion": "21/03/2017",
+                "fecha_vencimiento": "06/03/2027",
+                "estado": "VIGENTE",
+                "restricciones": "SIN RESTRICCIONES"
+            }
+        ]
+        }
+       }
+       },
+        "cee": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "El código de estado de la respuesta"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "El estado de la respuesta  true o false"
+          },
+          "message": {
+            "type": "string",
+            "description": "Mensaje de la respuesta"
+          },
+          "data": {
+            "type": "object",
+            "description": "Datos detallados de la respuesta",
+            "properties": {
+              "numero": {
+                "type": "string",
+                "description": "Numero del cee de la persona"
+              },
+              "nombres": {
+                "type": "string",
+                "description": "Nombres de la persona"
+              },
+              "apellido_paterno": {
+                "type": "string",
+                "description": "Apellido paterno de la persona"
+              },
+              "apellido_materno": {
+                "type": "string",
+                "description": "Apellido materno de la persona"
+              }
+            }
+          }
+        },
+        "example": {
+          "status": 200,
+          "message": "Exito",
+          "data": {
+          "numero": "001077238",
+          "nombres": "ARCILA",
+          "apellido_paterno": "LUZ CELIA KORINA",
+          "apellido_materno": "RIVADENEIRA"
+        }
+        }
+        },
+      "tipocambio": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "El código de estado de la respuesta"
+          },
+          "success": {
+            "type": "boolean",
+            "description": "El estado de la respuesta  true o false"
+          },
+          "message": {
+            "type": "string",
+            "description": "Mensaje de la respuesta"
+          },
+          "data": {
+            "type": "object",
+            "description": "Datos detallados de la respuesta",
+            "properties": {
+              "fecha": {
+                "type": "string",
+                "description": "Fecha"
+              },
+              "compra": {
+                "type": "string",
+                "description": "Precio de compra"
+              },
+              "venta": {
+                "type": "string",
+                "description": "Precio de venta"
+              }
+            }
+          }
+        },
+        "example": {
+          "status": 200,
+          "message": "Exito",
+          "data": {
+          "fecha": "2024-04-11",
+          "compra": 3.773,
+          "venta": 3.781
+      }
+        }
+        },
+      "error": {
+        "required": [
+          "status",
+          "message",
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+        "status": 400,
+        "success": false,
+        "message": "Bad Request"
+      }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
